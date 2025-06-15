@@ -1,0 +1,56 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2020",
+//     "lib": ["DOM", "DOM.Iterable", "ES2020"],
+//     "allowJs": false,
+//     "skipLibCheck": true,
+//     "esModuleInterop": true,
+//     "allowSyntheticDefaultImports": true,
+//     "strict": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "module": "ESNext",
+//     "moduleResolution": "Node",
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "noEmit": true,
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "baseUrl": ".",
+// "paths": {
+//   "@/*": ["src/*"],
+//   "@db/*": ["src/db/*"]
+// }
+//   },
+//   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src", "connect-test.ts"],
+//   "exclude": ["node_modules"]
+// }
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleDetection": "force",
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "incremental": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "paths": {
+      "@/*": ["src/*"],
+      "@db/*": ["src/db/*"]
+    },
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
+  },
+  "include": ["connect-test.ts", "drizzle", "src", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
