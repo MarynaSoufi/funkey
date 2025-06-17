@@ -30,6 +30,9 @@ A modern fullstack app to manage **activities**, **categories**, and **media**, 
 
 ## Getting Started
 
+- Use latest Node version
+- Stop all already running Docker containers
+
 ### 1. Clone the project
 
 git clone https://github.com/MarynaSoufi/funkey.git
