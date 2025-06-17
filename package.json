@@ -9,17 +9,28 @@
     "lint": "eslint . --ext .js,.ts,.jsx,.tsx --fix",
     "format": "prettier --write .",
     "prepare": "husky",
-    "lint-staged": "npx lint-staged"
+    "lint-staged": "npx lint-staged",
+    "docker:up": "docker-compose up -d",
+    "docker:down": "docker-compose down -v"
   },
   "dependencies": {
     "@faker-js/faker": "^9.8.0",
+    "@hookform/resolvers": "^5.1.1",
+    "@tanstack/react-table": "^8.21.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cva": "^0.0.0",
     "dotenv": "^16.5.0",
     "drizzle-orm": "^0.44.2",
+    "framer-motion": "^12.18.1",
+    "lucide-react": "^0.516.0",
     "next": "^15.3.3",
     "pg": "^8.16.0",
     "postgres": "^3.4.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-hook-form": "^7.58.1",
+    "tailwind-merge": "^3.3.1",
     "zod": "^3.25.64"
   },
   "devDependencies": {
@@ -38,11 +49,11 @@
     "eslint-plugin-import": "^2.31.0",
     "eslint-plugin-prettier": "^5.4.1",
     "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-tailwindcss": "^3.18.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.1.2",
     "postcss": "^8.5.5",
     "prettier": "^3.5.3",
+    "tailwindcss": "^4.1.10",
     "ts-node": "^10.9.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"

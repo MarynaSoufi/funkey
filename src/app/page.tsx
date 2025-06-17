@@ -1,8 +1,6 @@
-// src/app/page.tsx
-export default function HomePage() {
-  return (
-    <main className="min-h-screen flex items-center justify-center">
-      <h1 className="text-4xl font-bold text-blue-600">TailwindCSS работает! 🚀</h1>
-    </main>
-  )
+import { redirect } from 'next/navigation'
+
+export default function HomePage({ children }: { children: React.ReactNode }) {
+  redirect('/activities')
+  return <div className="px-20 py-10 m-auto max-w-4xl">{children}</div>
 }

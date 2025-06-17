@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { db } from '@/db'
-import { activityCategories, activityMedia } from '@/db/schema/schema'
+import { activityMedia } from '@/db/schema/schema'
 import { z } from 'zod'
 import { and, eq } from 'drizzle-orm'
 

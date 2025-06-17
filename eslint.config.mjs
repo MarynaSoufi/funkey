@@ -5,7 +5,6 @@ import eslintPluginReact from "eslint-plugin-react";
 import eslintPluginImport from "eslint-plugin-import";
 import tsParser from "@typescript-eslint/parser";
 import eslintPluginNext from "@next/eslint-plugin-next";
-import tailwindPlugin from "eslint-plugin-tailwindcss";
 export default [
     {
         ignores: [
@@ -21,7 +20,7 @@ export default [
             parser: tsParser,
             parserOptions: {
                 ecmaVersion: "latest",
-                sourceType: "module"
+                // sourceType: "module"
             },
             globals: {
                 JSX: "readonly",
@@ -34,7 +33,6 @@ export default [
             "import": eslintPluginImport,
             "react": eslintPluginReact,
             "next": eslintPluginNext,
-            "tailwindcss": tailwindPlugin,
         },
         rules: {
             "lines-between-class-members": ["error", "always", { exceptAfterSingleLine: true }],

@@ -1,18 +1,57 @@
 import { NextResponse } from 'next/server'
 import { db } from '@/db'
-import { activities, activityCategories, activityMedia } from '@/db/schema/schema'
+import { activities, activityCategories, activityMedia, media } from '@/db/schema/schema'
 import { eq } from 'drizzle-orm'
 import { activitySchema } from '@/db/validation'
 
-// GET /api/activities/:id
 export async function GET(_: Request, { params }: { params: { id: string } }) {
   const id = Number(params.id)
-  if (isNaN(id)) return NextResponse.json({ error: 'Invalid ID' }, { status: 400 })
 
-  const [activity] = await db.select().from(activities).where(eq(activities.id, id))
-  if (!activity) return NextResponse.json({ error: 'Not found' }, { status: 404 })
+  if (isNaN(id) || id <= 0) {
+    return NextResponse.json({ error: 'Invalid ID' }, { status: 400 })
+  }
 
-  return NextResponse.json(activity)
+  try {
+    const rows = await db
+      .select({
+        activityId: activities.id,
+        activityTitle: activities.title,
+        activityDescription: activities.description,
+        mediaId: media.id,
+        mediaTitle: media.title,
+        mediaLink: media.link,
+      })
+      .from(activities)
+      .leftJoin(activityMedia, eq(activities.id, activityMedia.activityId))
+      .leftJoin(media, eq(activityMedia.mediaId, media.id))
+      .where(eq(activities.id, id))
+
+    if (!rows.length) {
+      return NextResponse.json({ error: 'Activity not found' }, { status: 404 })
+    }
+
+    const { activityId, activityTitle, activityDescription } = rows[0]
+
+    const mediaList = rows
+      .filter((row) => row.mediaId !== null)
+      .map((row) => ({
+        id: row.mediaId!,
+        title: row.mediaTitle!,
+        link: row.mediaLink!,
+      }))
+
+    const fullActivity = {
+      id: activityId,
+      title: activityTitle,
+      description: activityDescription,
+      media: mediaList,
+    }
+
+    return NextResponse.json(fullActivity)
+  } catch (error) {
+    console.error('Failed to fetch activity:', error)
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
+  }
 }
 
 // PATCH /api/activities/:id

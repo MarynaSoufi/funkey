@@ -1,4 +1,3 @@
-// src/app/api/activities/route.ts
 import { NextResponse } from 'next/server'
 import { db } from '@/db/index'
 import { activities } from '@/db/schema/schema'
