@@ -62,6 +62,6 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5432/my_project_db
 - Seed DB
   `npm run seed`
 
-### 5. Run locally
+### 6. Run locally
 
 `npm run dev`
