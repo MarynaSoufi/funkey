@@ -28,7 +28,7 @@ A modern fullstack app to manage **activities**, **categories**, and **media**, 
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Clone the project
 
