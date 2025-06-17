@@ -5,13 +5,8 @@ import { Button } from '@/components/Button'
 import Modal from '@/components/Modal'
 import PageContainer from '@/components/PageContainer'
 import TableWrapper from '@/components/TableWarpper'
+import { Activity } from '@/lib/types'
 import { useEffect, useState } from 'react'
-
-type Activity = {
-  id: number
-  title: string
-  description: string
-}
 
 export default function ActivitiesPage() {
   const [activities, setActivities] = useState<Activity[]>([])

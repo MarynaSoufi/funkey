@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
-import { Activity, Category, Media } from '@/lib/types'
+import { Category, CategorySubmitValues } from '@/lib/types'
 import UpdateCategoryForm from '@/components/UpdateCategoryForm'
 
 export default function CategoryDetailPage() {
@@ -35,12 +35,7 @@ export default function CategoryDetailPage() {
     loadData()
   }, [id])
 
-  const handleSave = async (values: {
-    title: string
-    description: string
-    media: Media[]
-    activity: Activity[]
-  }) => {
+  const handleSave = async (values: CategorySubmitValues) => {
     setSaving(true)
 
     try {
@@ -59,7 +54,7 @@ export default function CategoryDetailPage() {
       // --- Media ---
 
       const prevMediaIds = new Set(category?.media?.map((m) => m.id))
-      const newMediaIds = new Set(values.media.map((m) => m.id))
+      const newMediaIds = new Set(values?.media?.map((m) => m.id))
 
       const mediaToAdd = [...newMediaIds].filter((id) => !prevMediaIds.has(id))
       const mediaToRemove = [...prevMediaIds].filter((id) => !newMediaIds.has(id))
@@ -82,7 +77,7 @@ export default function CategoryDetailPage() {
       // --- Activities ---
 
       const prevActivityIds = new Set(category?.activity?.map((a) => a.id))
-      const newActivityIds = new Set(values.activity.map((a) => a.id))
+      const newActivityIds = new Set(values?.activity?.map((a) => a.id))
 
       const activitiesToAdd = [...newActivityIds].filter((id) => !prevActivityIds.has(id))
       const activitiesToRemove = [...prevActivityIds].filter((id) => !newActivityIds.has(id))
@@ -117,7 +112,6 @@ export default function CategoryDetailPage() {
 
   if (loading) return <div className="text-center py-10">Loading...</div>
   if (error || !category) return <div className="text-red-600 text-center py-10">{error}</div>
-  console.log('category', category)
   return (
     <div className="max-w-3xl mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-6">Category Detail</h1>

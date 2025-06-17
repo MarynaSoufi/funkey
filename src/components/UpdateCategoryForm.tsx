@@ -3,10 +3,10 @@
 import { useEffect, useState } from 'react'
 import { Button } from './Button'
 import useCategoryFormController from '@/app/hooks/useCategoryFormController'
-import { Activity, Category, Media } from '@/lib/types'
+import { Activity, Category, CategorySubmitValues, Media } from '@/lib/types'
 
 type Props = {
-  onSubmit: () => void
+  onSubmit: (_values: CategorySubmitValues) => void
   loading?: boolean
   category: Category
 }

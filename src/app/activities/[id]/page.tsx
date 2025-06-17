@@ -3,9 +3,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'next/navigation'
 import UpdateActivityForm from '@/components/UpdateActivityForm'
-
-type Media = { id: number; title: string; link: string }
-type Activity = { id: number; title: string; description: string; media: Media[] }
+import { Activity, ActivitySubmitValues } from '@/lib/types'
 
 export default function ActivityDetailPage() {
   const { id } = useParams()
@@ -39,11 +37,7 @@ export default function ActivityDetailPage() {
     loadData()
   }, [id])
 
-  const handleSave = async (values: {
-    title: string
-    description: string
-    media: { id: number; title: string; link: string }[]
-  }) => {
+  const handleSave = async (values: ActivitySubmitValues) => {
     setSaving(true)
 
     try {
@@ -60,8 +54,8 @@ export default function ActivityDetailPage() {
       const updated = await res.json()
 
       // 2. Compare old and new media
-      const prevIds = new Set(activity?.media.map((m) => m.id))
-      const newIds = new Set(values.media.map((m) => m.id))
+      const prevIds = new Set(activity?.media?.map((m) => m.id))
+      const newIds = new Set(values?.media?.map((m) => m.id))
 
       const toAdd = [...newIds].filter((id) => !prevIds.has(id))
       const toRemove = [...prevIds].filter((id) => !newIds.has(id))

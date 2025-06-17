@@ -40,7 +40,7 @@ export default [
             "react/require-default-props": "off",
             "no-use-before-define": "off",
             "import/prefer-default-export": "off",
-            "no-unused-vars": "warn",
+            "no-unused-vars": ["warn", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }],
             "no-else-return": "off",
             "no-shadow": "off",
             "prefer-arrow-callback": "warn"

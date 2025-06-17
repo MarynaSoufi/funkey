@@ -1,22 +1,12 @@
 import useActivityFormController from '@/app/hooks/useActivityFormController'
 import { Button } from './Button'
 import { useEffect, useState } from 'react'
-
-type Media = {
-  id: number
-  title: string
-  link: string
-}
+import { Activity, ActivitySubmitValues, Media } from '@/lib/types'
 
 type Props = {
-  onSubmit: () => void
+  onSubmit: (_values: ActivitySubmitValues) => void
   loading?: boolean
-  activity: {
-    id: number
-    title: string
-    description: string
-    media: Media[]
-  }
+  activity: Activity
 }
 
 export default function UpdateActivityForm({ onSubmit, loading, activity }: Props) {
@@ -31,7 +21,7 @@ export default function UpdateActivityForm({ onSubmit, loading, activity }: Prop
   } = useActivityFormController({
     title: activity.title,
     description: activity.description,
-    media: activity.media.map((m) => ({
+    media: activity?.media?.map((m) => ({
       id: m.id,
       title: m.title,
       link: m.link,

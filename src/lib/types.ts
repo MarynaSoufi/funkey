@@ -17,3 +17,16 @@ export type Category = {
   media?: Media[]
   activity?: Activity[]
 }
+
+export type CategorySubmitValues = {
+  title: string
+  description: string
+  media?: Media[]
+  activity?: Activity[]
+}
+
+export type ActivitySubmitValues = {
+  title: string
+  description: string
+  media?: Media[]
+}
